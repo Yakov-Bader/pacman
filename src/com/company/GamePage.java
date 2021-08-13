@@ -14,6 +14,8 @@ public class GamePage extends JPanel {
     Player p;
     Ghosts g1,g2,g3;
     Matrix mat;
+    CardLayout card;
+
     public GamePage(){
         p=new Player(20,20);
         g1=new Ghosts(20,20);
@@ -51,6 +53,7 @@ public class GamePage extends JPanel {
         timer2 = new Timer( 30, action2);
 
         addKeyListener(new DirectionListener());
+
 
         addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -242,10 +245,7 @@ public class GamePage extends JPanel {
 
     }
     public void lose() {
-        setVisible(false);
-        Lose lose=new Lose(false);
-        add(lose);
-
+        card.next(this);
     }
     public void win(){
         int win=0;
@@ -257,9 +257,10 @@ public class GamePage extends JPanel {
             }
         }
         if(win==0){
-            setVisible(false);
             Lose won=new Lose(true);
-            add(won);
+            Lose lose=new Lose(false);
+            add(won,"you win");
+            add(lose,"you lose");
 
         }
 
