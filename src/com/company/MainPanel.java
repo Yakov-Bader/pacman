@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
         page.add(game);
         page.add(cool);
 
-        page.setPreferredSize (new Dimension(48*20, 28*20+100));
+        page.setPreferredSize (new Dimension(48*21, 28*20+50));
         page.setBackground (Color.cyan);
 
         add(page);
