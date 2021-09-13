@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class Lose extends JPanel {
     JLabel massage;
     JButton replay,finish;
-    JPanel bye;
+    JPanel bye,nextLevel;
     public Lose(boolean win){
-
+        nextLevel=new GamePage(2);
         ButtonListener listener = new ButtonListener();
         if(win){
             massage=new JLabel("yay, you won!!!!! good job, now you could thank me for the game");
@@ -39,7 +39,11 @@ public class Lose extends JPanel {
 
         public void actionPerformed (ActionEvent event) {
             if(event.getActionCommand().equals("replay")){
-                massage.setText("you thought it will be so easy to get another free game?");
+                bye.setVisible(false);
+                bye.setEnabled(false);
+                bye.setOpaque(false);
+                add(nextLevel);
+                nextLevel.requestFocus();
             }else{
                 try {
                     TimeUnit.SECONDS.sleep(1);

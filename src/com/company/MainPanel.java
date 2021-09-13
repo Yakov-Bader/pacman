@@ -13,7 +13,7 @@ public class MainPanel extends JPanel {
     public MainPanel() {
 
         Cool=new Cool();
-        GamePage=new GamePage();
+        GamePage=new GamePage(1);
         page= new JPanel();
 
         ButtonListener listener = new ButtonListener();
@@ -40,6 +40,8 @@ public class MainPanel extends JPanel {
 
         public void actionPerformed (ActionEvent event) {
             page.setVisible(false);
+            page.setEnabled(false);
+            page.setOpaque(false);
             if(event.getActionCommand().equals("see something cool")){
                 add(Cool);
             }else{
@@ -48,7 +50,6 @@ public class MainPanel extends JPanel {
             }
         }
     }
-
 
 }
 

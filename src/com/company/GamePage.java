@@ -9,23 +9,30 @@ import java.text.DecimalFormat;
 public class GamePage extends JPanel {
     long startTime, endTime;
     float duration;
-    private final Timer timer,timer1,timer2;
+    private final Timer timer,timer1,timer2,timer3;
     int SQRSIZE, MSIZE, BLUE, YELLOW, DOTTED, HERE,FRONT,BACK,NONE;
     JPanel game;
     Player p;
-    Ghosts g1,g2,g3;
+    Ghosts g1,g2,g3,g4;
     Matrix mat;
+    int[][] board;
 
-    public GamePage(){
+    public GamePage(int level){
 
+        mat=new Matrix();
+        if(level==1){
+            board=mat.arr1.clone();
+        }else if(level==2){
+            board=mat.arr2.clone();
+        }
         game=new JPanel();
         game.add(new MyGraphics());
 
-        p=new Player(20,20);
+        p=new Player(60,300);
         g1=new Ghosts(20,20);
         g2=new Ghosts(920,520);
         g3=new Ghosts(920,20);
-        mat=new Matrix();
+        g4=new Ghosts(20,520);
 
         SQRSIZE=20;
         MSIZE=10;
@@ -52,9 +59,15 @@ public class GamePage extends JPanel {
             win();
             repaint();
         };
+        ActionListener action3 = evt -> {
+            updateG(g4.getDirection(),g4);
+            win();
+            repaint();
+        };
         timer = new Timer( 30, action);
         timer1 = new Timer( 30, action1);
         timer2 = new Timer( 30, action2);
+        timer3 = new Timer( 30, action3);
 
         addKeyListener(new DirectionListener());
 
@@ -64,6 +77,7 @@ public class GamePage extends JPanel {
                 timer.start();
                 timer1.start();
                 timer2.start();
+                timer3.start();
                 repaint();
             }
             public void focusLost(FocusEvent e) {
@@ -75,14 +89,11 @@ public class GamePage extends JPanel {
         });
 
         add(game);
-        //setBackground (Color.PINK);
         setPreferredSize (new Dimension(SQRSIZE*48, SQRSIZE*28+50));
-        startTime = System.currentTimeMillis();
         setFocusable(true);
+        startTime = System.currentTimeMillis();
     }
     public class MyGraphics extends JComponent {
-
-        //private static final long serialVersionUID = 1L;
 
         MyGraphics() {
             setPreferredSize (new Dimension(960, 650));
@@ -92,12 +103,12 @@ public class GamePage extends JPanel {
         public void paint(Graphics g) {
 
             super.paintComponent (g);
-            for (int i=0;i<mat.arr1.length;i++){
-                for (int j=0;j<mat.arr1[i].length;j++){
-                    if(mat.arr1[i][j]==BLUE){
+            for (int i=0;i<board.length;i++){
+                for (int j=0;j<board[i].length;j++){
+                    if(board[i][j]==BLUE){
                         g.setColor(Color.BLUE);
                         g.fillRect (j*SQRSIZE, i*SQRSIZE, SQRSIZE, SQRSIZE);
-                    }else if(mat.arr1[i][j]==DOTTED){
+                    }else if(board[i][j]==DOTTED){
                         g.setColor(Color.orange);
                         g.fillRect (j*SQRSIZE, i*SQRSIZE, SQRSIZE, SQRSIZE);
 
@@ -121,8 +132,11 @@ public class GamePage extends JPanel {
 
             g.setColor(Color.cyan);
             g.fillRect(g3.getX(),g3.getY(),MSIZE,MSIZE);
-            g.setColor(Color.red);
 
+            g.setColor(Color.PINK);
+            g.fillRect(g4.getX(),g4.getY(),MSIZE,MSIZE);
+
+            g.setColor(Color.red);
             g.setFont(new Font("TimesRoman", Font.PLAIN, SQRSIZE));
             g.drawString("you have "+p.getPoints()+" points", 400, SQRSIZE*29);
             g.drawString(df.format(duration)+ " minutes left", 400, SQRSIZE*30);
@@ -163,46 +177,46 @@ public class GamePage extends JPanel {
     public void upadateP(int horizontal,int vertical) {
         switch (horizontal) {
             case 1:
-                if(mat.arr1[p.getY()/SQRSIZE][(p.getX()+MSIZE)/SQRSIZE]!=BLUE){
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
-                    p.setX(p.getX()+FRONT);
-                    if(mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
+                if(board[p.getY()/SQRSIZE][(p.getX()+MSIZE)/SQRSIZE]!=BLUE){
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
+                    p.setX(p.getX()+FRONT*5);
+                    if(board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
                         p.setPoints();
                     }
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
                 }
                 break;
             case -1:
-                if(mat.arr1[p.getY()/SQRSIZE][(p.getX()+BACK)/SQRSIZE]!=BLUE){
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
-                    p.setX(p.getX()+BACK);
-                    if(mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
+                if(board[p.getY()/SQRSIZE][(p.getX()+BACK)/SQRSIZE]!=BLUE){
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
+                    p.setX(p.getX()+BACK*5);
+                    if(board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
                         p.setPoints();
                     }
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
                 }
                 break;
         }
         switch (vertical) {
             case 1:
-                if(mat.arr1[(p.getY()+MSIZE)/SQRSIZE][p.getX()/SQRSIZE]!=BLUE){
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
-                    p.setY(p.getY()+FRONT);
-                    if(mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
+                if(board[(p.getY()+MSIZE)/SQRSIZE][p.getX()/SQRSIZE]!=BLUE){
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
+                    p.setY(p.getY()+FRONT*5);
+                    if(board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
                         p.setPoints();
                     }
 
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
                 }
                 break;
             case -1:
-                if(mat.arr1[(p.getY()+BACK)/SQRSIZE][p.getX()/SQRSIZE]!=BLUE){
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
-                    p.setY(p.getY()+BACK);
-                    if(mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
+                if(board[(p.getY()+BACK)/SQRSIZE][p.getX()/SQRSIZE]!=BLUE){
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=YELLOW;
+                    p.setY(p.getY()+BACK*5);
+                    if(board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]==DOTTED){
                         p.setPoints();
                     }
-                    mat.arr1[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
+                    board[p.getY()/SQRSIZE][(p.getX())/SQRSIZE]=HERE;
                 }
                 break;
         }
@@ -216,42 +230,42 @@ public class GamePage extends JPanel {
         duration=5-duration;
         switch (dir){
             case 0:
-                if(mat.arr1[(ghost.getY())/SQRSIZE][(ghost.getX()+MSIZE)/SQRSIZE]==BLUE){
+                if(board[(ghost.getY())/SQRSIZE][(ghost.getX()+MSIZE)/SQRSIZE]==BLUE){
                     ghost.setDirection(ghost.getRand());
                 }else{
                     ghost.setX(ghost.getX()+FRONT);
                 }
-                if(mat.arr1[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
+                if(board[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
                     lose();
                 }
                 break;
             case 1:
-                if(mat.arr1[(ghost.getY())/SQRSIZE][(ghost.getX()+BACK)/SQRSIZE]==BLUE){
+                if(board[(ghost.getY())/SQRSIZE][(ghost.getX()+BACK)/SQRSIZE]==BLUE){
                     ghost.setDirection(ghost.getRand());
                 }else{
                     ghost.setX(ghost.getX()+BACK);
                 }
-                if(mat.arr1[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
+                if(board[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
                     lose();
                 }
                 break;
             case 2:
-                if(mat.arr1[(ghost.getY()+MSIZE)/SQRSIZE][ghost.getX()/SQRSIZE]==BLUE){
+                if(board[(ghost.getY()+MSIZE)/SQRSIZE][ghost.getX()/SQRSIZE]==BLUE){
                     ghost.setDirection(ghost.getRand());
                 }else{
                     ghost.setY(ghost.getY()+FRONT);
                 }
-                if(mat.arr1[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
+                if(board[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
                     lose();
                 }
                 break;
             case 3:
-                if(mat.arr1[(ghost.getY()+BACK)/SQRSIZE][ghost.getX()/SQRSIZE]==BLUE){
+                if(board[(ghost.getY()+BACK)/SQRSIZE][ghost.getX()/SQRSIZE]==BLUE){
                     ghost.setDirection(ghost.getRand());
                 }else{
                     ghost.setY(ghost.getY()+BACK);
                 }
-                if(mat.arr1[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
+                if(board[(ghost.getY())/SQRSIZE][ghost.getX()/SQRSIZE]==HERE||duration<=0){
                     lose();
                 }
                 break;
@@ -261,20 +275,24 @@ public class GamePage extends JPanel {
     }
     public void lose() {
         game.setVisible(false);
+        game.setEnabled(false);
+        game.setOpaque(false);
         Lose lose=new Lose(false);
         add(lose);
     }
     public void win(){
         int win=0;
-        for (int i=0;i<mat.arr1.length;i++){
-            for (int j=0;j<mat.arr1[i].length;j++){
-                if(mat.arr1[i][j]==DOTTED){
+        for (int i=0;i<board.length;i++){
+            for (int j=0;j<board[i].length;j++){
+                if(board[i][j]==DOTTED){
                    win++;
                 }
             }
         }
         if(win==0){
             game.setVisible(false);
+            game.setEnabled(false);
+            game.setOpaque(false);
             Lose won=new Lose(true);
             add(won);
         }
