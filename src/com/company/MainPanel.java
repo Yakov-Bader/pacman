@@ -7,13 +7,11 @@ import java.awt.event.ActionListener;
 public class MainPanel extends JPanel {
     private final JButton game,cool;
     private final JLabel title;
-    private final JPanel page,Cool,GamePage;
+    private JPanel page,Cool,GamePage;
 
 
     public MainPanel() {
 
-        Cool=new Cool();
-        GamePage=new GamePage(1);
         page= new JPanel();
 
         ButtonListener listener = new ButtonListener();
@@ -30,7 +28,7 @@ public class MainPanel extends JPanel {
         page.add(game);
         page.add(cool);
 
-        page.setPreferredSize (new Dimension(48*21, 28*20+50));
+        page.setPreferredSize (new Dimension(48*25, 28*20+200));
         page.setBackground (Color.cyan);
 
         add(page);
@@ -43,8 +41,11 @@ public class MainPanel extends JPanel {
             page.setEnabled(false);
             page.setOpaque(false);
             if(event.getActionCommand().equals("see something cool")){
+                Cool=new Cool();
                 add(Cool);
+                Cool.requestFocus();
             }else{
+                GamePage=new GamePage(1);
                 add(GamePage);
                 GamePage.requestFocus();
             }

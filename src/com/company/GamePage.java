@@ -89,7 +89,7 @@ public class GamePage extends JPanel {
         });
 
         add(game);
-        setPreferredSize (new Dimension(SQRSIZE*48, SQRSIZE*28+50));
+        setPreferredSize (new Dimension(SQRSIZE*48, SQRSIZE*28+200));
         setFocusable(true);
         startTime = System.currentTimeMillis();
     }
