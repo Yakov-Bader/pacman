@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Lose extends JPanel {
     JLabel massage;
-    JButton replay,finish;
-    JPanel bye,nextLevel, thisLevel;
-    boolean winer;
+    JButton replay,finish,joke;
+    JPanel bye,nextLevel, thisLevel,Cool;
+    boolean winner;
     public Lose(boolean win){
-        winer=win;
+        winner =win;
         nextLevel=new GamePage(2);
         thisLevel=new GamePage(1);
         ButtonListener listener = new ButtonListener();
@@ -34,6 +34,10 @@ public class Lose extends JPanel {
         finish.addActionListener (listener);
         bye.add(finish);
 
+        joke =new JButton("some joke");
+        joke.addActionListener (listener);
+        bye.add(joke);
+
         bye.setPreferredSize (new Dimension(500, 500));
         bye.setBackground (Color.cyan);
         add(bye);
@@ -45,13 +49,21 @@ public class Lose extends JPanel {
                 bye.setVisible(false);
                 bye.setEnabled(false);
                 bye.setOpaque(false);
-                if(winer){
+                if(winner){
                     add(nextLevel);
                     nextLevel.requestFocus();
                 }else{
                     add(thisLevel);
                     thisLevel.requestFocus();
                 }
+            }else if(event.getActionCommand().equals("some joke")){
+                bye.setVisible(false);
+                bye.setEnabled(false);
+                bye.setOpaque(false);
+
+                Cool = new Cool();
+                add(Cool);
+                Cool.requestFocus();
             }else{
                 try {
                     TimeUnit.SECONDS.sleep(1);

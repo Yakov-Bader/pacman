@@ -7,6 +7,7 @@
     <list default="true" id="f98f2b4a-cfb4-4ab5-9cea-5e85ad315ca5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool$ButtonListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Cool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Cool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Lose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Lose.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
