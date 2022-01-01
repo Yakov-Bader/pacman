@@ -34,9 +34,9 @@ public class Cool extends JPanel {
 
         public void actionPerformed (ActionEvent event) {
             if(Objects.equals(event.getActionCommand(), "Do you want to hear a joke?")){
-                l1.setText("Yeshivat Derech Chaim");
+                l1.setText("why couldn't the puny sing a song?"+"   Because she was a little horse :)");
             }else{
-                l2.setText("BMDC");
+                l2.setText("Why did the kid bring a ladder to school?" +"   Because she wanted to go to high school:)");
             }
         }
     }

@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f98f2b4a-cfb4-4ab5-9cea-5e85ad315ca5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool$ButtonListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Cool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage$DirectionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage$DirectionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/GamePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Ghosts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Ghosts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Lose$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Lose$ButtonListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Lose.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Lose.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/MainPanel$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/MainPanel$ButtonListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/MainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/MainPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Matrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Matrix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pacnam/com/company/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacnam/com/company/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Cool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Cool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
